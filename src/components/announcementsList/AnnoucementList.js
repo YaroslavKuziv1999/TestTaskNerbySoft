@@ -47,17 +47,14 @@ class AnnoucementList extends Component{
                         totalArr.title=el.title;
                         foundTitle = true;
                     }
-                    if (foundTitle === true) { totalArr.description = el.description }
+                    if (foundTitle === true) { totalArr.description = el.description; }
                     if(el.description === newList[0].description || el.description.toLowerCase() === newList[0].description.toLowerCase() || descArr.find(x => x.toLowerCase()===newList[0].description.toLowerCase()?true:false)){
                         totalArr.description=el.description;
                         foundDesc = true;
                     }
-                    if(foundDesc === true) { totalArr.title = el.title }
-                    if(index<3){
-                        return totalArr;
-                    }
+                    if(foundDesc === true) { totalArr.title = el.title; }
+                    return totalArr;
                 });
-                console.log('SIMILILAR BLYAT' + JSON.stringify(similar));
                 return {
                     similarList: similar,
                     targetList: [...newList],
@@ -153,7 +150,7 @@ class AnnoucementList extends Component{
 
     render(){
         const elems = this.state.announcementList.map((elem, index) =>
-            <li>
+            <li key = {index}>
                 <Announcement announcement={elem}/>
                 <button  onClick={()=>{
                     this.setState({
@@ -167,7 +164,7 @@ class AnnoucementList extends Component{
         );
         const foundElems = this.state.foundElemsList.map((item,index)=> {
             return(
-            <li>
+            <li key={index}>
                 <AnnouncementFoundItems announcement={item} i={index} />
             </li>
             )
@@ -213,7 +210,6 @@ class AnnoucementList extends Component{
                     <div>
                         <ul>
                             <li>
-                                {console.log('Similar List = '+JSON.stringify(this.state.similarList))}
                                 {this.state.seen ? <AnnouncementInfo toggle={this.togglePop} announcement={this.state.targetList} announcementList={this.state.similarList}/> :elems}
                             </li>
                         </ul>

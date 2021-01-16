@@ -20,13 +20,15 @@ render() {
   if(mm<10){
       mm=`0${mm}`;
   }
-  const similar = announcementList.map((el)=>{
+  const similar = announcementList.map((el,index)=>{
       return(
         <div>
-          <li>
+          {index<3?
+          <li key = {index}>
             <h2>{el.title}</h2>
             {el.description}
-          </li>
+          </li> : null
+          }
         </div>
         )
   });
