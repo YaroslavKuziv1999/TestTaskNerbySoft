@@ -150,16 +150,13 @@ class AnnoucementList extends Component{
 
     render(){
         const elems = this.state.announcementList.map((elem, index) =>
-            <li key = {index}>
-                <Announcement announcement={elem}/>
-                <button  onClick={()=>{
-                    this.setState({
-                        isEdit: true,
-                        idx: index
-                    });
-                }}>Edit</button>
-                <button onClick={()=>this.togglePop(index)} style={{float:'right'}}>Show Info</button>
-                <button type="button" onClick={()=>this.onRemoveItem(index)}>Delete</button>
+            <li key = {index} style={{paddingTop: "10px"}}>
+                <Announcement  announcement={elem}/>
+                <div className="card-text" style={{background: '#f2f2f2', padding: '10px'}}>
+                    <button className="btn btn-primary " style={{marginRight:"10px"}} onClick={()=>{this.setState({isEdit: true, idx: index});}}>Edit</button>
+                    <button className="btn btn-info" onClick={()=>this.togglePop(index)} style={{float:'right'}}>Show Info</button>
+                    <button className="btn btn-danger" type="button" onClick={()=>this.onRemoveItem(index)}>Delete</button>
+                </div>
             </li>
         );
         const foundElems = this.state.foundElemsList.map((item,index)=> {
@@ -171,16 +168,16 @@ class AnnoucementList extends Component{
         });
         if(this.state.isEdit === true) {
             return(
-                <div>
-                    <label>
-                         Title:
-                         <input type="text" name="title" onChange={this.handleInputChange}/>
+                <div className="card-header" style={{width:"35%"}}>
+                     <label className="input-group">
+                         <h5 style={{paddingRight: "3%"}}>Title:</h5>
+                         <input style={{height: "30px"}} className="form-control" type="text" name="title" onChange={this.handleInputChange}/>
                      </label>
-                     <label>
-                         Description:
-                         <input type="text" name="description" onChange={this.handleInputChange} />
+                     <label className="input-group" style={{marginTop:"1%", marginBottom: "2%"}}>
+                     <h5 style={{paddingRight: "3%"}}>Description:</h5>
+                         <input style={{height: "30px"}} className="form-control" type="text" name="description" onChange={this.handleInputChange} />
                      </label>
-                     <button onClick={this.onEditItem}>Update</button>
+                     <button type="submit" className="btn btn-primary" style={{width:"100%"}} value="Add" onClick = {this.onEditItem}>Save</button>
                 </div>
             )
         }
@@ -190,16 +187,16 @@ class AnnoucementList extends Component{
                     {this.state.seen ?
                         null :
                         <div>
-                            <button onClick={this.handleClick}>Add</button>
-                            <label>
-                                <input type="text" name="title" onChange={this.handleInputSearch} />
-                                <button onClick={this.onSearchItem}>Search</button>
+                            <button className="btn btn-success" onClick={this.handleClick}>Add</button>
+                            <label className="input-group" style={{width:"25%", float: "right"}}>
+                                <input className="form-control" type="text" name="title" onChange={this.handleInputSearch} />
+                                <button className="btn btn-secondary" onClick={this.onSearchItem}>Search</button>
                             </label>
                         </div>
                     }
                      {this.state.isFound ?
                      
-                    <ul>
+                    <ul className="list-unstyled">
                         <h1>Found Annoucement:</h1>
                         <li>
                              {foundElems}
@@ -208,7 +205,7 @@ class AnnoucementList extends Component{
                     </ul>
                     :
                     <div>
-                        <ul>
+                        <ul className="list-unstyled">
                             <li>
                                 {this.state.seen ? <AnnouncementInfo toggle={this.togglePop} announcement={this.state.targetList} announcementList={this.state.similarList}/> :elems}
                             </li>
@@ -219,16 +216,16 @@ class AnnoucementList extends Component{
             )
         }if(this.state.isOpen === true) {
             return(
-                <div>
-                     <label>
-                         Title:
-                         <input type="text" name="title" onChange={this.handleInputChange}/>
+                <div className="card-header" style={{width:"35%"}}>
+                     <label className="input-group">
+                         <h5 style={{paddingRight: "3%"}}>Title:</h5>
+                         <input style={{height: "30px"}} className="form-control" type="text" name="title" onChange={this.handleInputChange}/>
                      </label>
-                     <label>
-                         Description:
-                         <input type="text" name="description" onChange={this.handleInputChange} />
+                     <label className="input-group" style={{marginTop:"1%", marginBottom: "2%"}}>
+                     <h5 style={{paddingRight: "3%"}}>Description:</h5>
+                         <input style={{height: "30px"}} className="form-control" type="text" name="description" onChange={this.handleInputChange} />
                      </label>
-                     <input type="submit" value="Add" onClick = {this.onAddItem}/>
+                     <input type="submit" className="btn btn-success" style={{width:"100%"}} value="Add" onClick = {this.onAddItem}/>
                 </div>
             )
         }

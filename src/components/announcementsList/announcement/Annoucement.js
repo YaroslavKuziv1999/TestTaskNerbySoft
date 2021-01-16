@@ -4,8 +4,8 @@ class Announcement extends Component {
     render() {
         const {announcement} = this.props;
         return (
-            <div>
-                <h2>
+            <div className="card">
+                <h2 className="card-header">
                     {announcement.title}
                 </h2>
             </div>

@@ -23,10 +23,12 @@ render() {
   const similar = announcementList.map((el,index)=>{
       return(
         <div>
-          {index<3?
-          <li key = {index}>
-            <h2>{el.title}</h2>
-            {el.description}
+          {(index<3 && el.title!==undefined && JSON.stringify(el)!==JSON.stringify(announcement[0]))?
+          <li key = {index} className="card" style={{marginTop: "1%"}}>
+            <h2 className="card-header">{el.title}</h2>
+            <div className="card-body">
+              <section className="card-text">{el.description}</section>
+            </div>
           </li> : null
           }
         </div>
@@ -34,13 +36,15 @@ render() {
   });
   return (
    <div>
-     <div>
-      <h2>{announcement[0].title}</h2>
-      <section>{announcement[0].description}</section>
-      <h3>Date added: {dd}/{mm}/{year}</h3>
-    </div>
-      <button onClick={this.handleClick}>Close</button>
-      <h3>SIMILAR</h3>
+      <div className="card">
+        <h2 className="card-header">{announcement[0].title}</h2>
+        <div className="card-body">
+          <section className="card-text">{announcement[0].description}</section>
+          <h6 className="card-subtitle text-muted" style={{marginTop:"1%"}}>Date added: {dd}/{mm}/{year}</h6>
+        </div>
+      </div>
+      <button style={{marginTop:"1%", marginBottom: "1%", width: "100%", padding: "1%"}} className="btn btn-warning" onClick={this.handleClick}>Close</button>
+      <h3 className="alert alert-primary">Similar announcement</h3>
       {similar}
    </div>
   );
