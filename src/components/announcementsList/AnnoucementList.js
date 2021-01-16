@@ -200,7 +200,7 @@ class AnnoucementList extends Component{
                         <h1>Found Annoucement:</h1>
                         <li>
                              {foundElems}
-                             <button onClick={()=>{this.setState({isFound: false})}}>Back</button>
+                             <button className="btn btn-warning" style={{marginTop:"1%"}} onClick={()=>{this.setState({isFound: false})}}>Back</button>
                         </li>
                     </ul>
                     :
